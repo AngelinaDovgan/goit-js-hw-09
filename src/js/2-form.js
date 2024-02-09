@@ -2,8 +2,8 @@ const form = document.querySelector(".feedback-form");
 const localStorageKey = "feedback-form-state";
 
 function readForm(form) {
-    const email = form.email.value;
-    const message = form.message.value;
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
     return {
         email,
         message
@@ -27,12 +27,19 @@ if (formData) {
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const saveData = {
-    email: event.currentTarget.email.value,
-    message: event.currentTarget.message.value,
-};
-console.log(saveData);
-localStorage.clear()
+
+    const newEmail = event.currentTarget.email.value.trim();
+    const newMessage = event.currentTarget.message.value.trim();
+    if (!newEmail || !newMessage) {
+        console.log("Заповніть всі рядки");
+    } else {
+        const saveData = {
+            email: newEmail,
+            message: newMessage
+        };
+        console.log(saveData);
+    }
+localStorage.removeItem(localStorageKey);
 form.reset()
 })
 
