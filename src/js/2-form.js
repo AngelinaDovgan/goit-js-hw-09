@@ -31,7 +31,7 @@ form.addEventListener('submit', (event) => {
     const newEmail = event.currentTarget.email.value.trim();
     const newMessage = event.currentTarget.message.value.trim();
     if (!newEmail || !newMessage) {
-        console.log("Заповніть всі рядки");
+        alert("Заповніть всі рядки");
     } else {
         const saveData = {
             email: newEmail,
